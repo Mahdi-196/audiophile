@@ -4,4 +4,8 @@ import config from '../config/database.js'; // Adjust the path as needed
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
+<<<<<<< HEAD
 export { Book, sequelize };
+=======
+export { Book, sequelize };
+>>>>>>> refs/remotes/origin/Andrew

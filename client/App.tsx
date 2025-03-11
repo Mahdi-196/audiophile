@@ -10,7 +10,11 @@ import Footer from "./components/Footer";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const App: React.FC = () => {
+<<<<<<< HEAD
   const [isLoginOpen, setIsLoginOpen] = useState(true);
+=======
+  const [isLoginOpen, setIsLoginOpen] = useState(true); //auto opens login modal
+>>>>>>> refs/remotes/origin/Andrew
 
   return (
     <div className="d-flex flex-column min-vh-100" style={{ background: "linear-gradient(to bottom, var(--navy), var(--charcoal))" }}>
@@ -35,4 +39,8 @@ const App: React.FC = () => {
   );
 };
 
+<<<<<<< HEAD
 export default App;
+=======
+export default App;
+>>>>>>> refs/remotes/origin/Andrew

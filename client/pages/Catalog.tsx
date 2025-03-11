@@ -21,7 +21,11 @@ const Catalog: React.FC = () => {
   const handleSearch = async () => {
     if (!query.trim()) return;
     try {
+<<<<<<< HEAD
       const response = await axios.get(`http://localhost:3001/api/books?query=${encodeURIComponent(query)}`);
+=======
+      const response = await axios.get(`http://localhost:5000/api/books?query=${encodeURIComponent(query)}`);
+>>>>>>> refs/remotes/origin/Andrew
       console.log("API full response:", response.data);
       setBooks(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
@@ -55,6 +59,7 @@ const Catalog: React.FC = () => {
         />
       </div>
 
+<<<<<<< HEAD
       <div className="row">
         {Array.isArray(books) && books.length > 0 ? (
           books.map((book) => (
@@ -76,6 +81,26 @@ const Catalog: React.FC = () => {
         )}
       </div>
 
+=======
+<div className="row">
+  {Array.isArray(books) && books.length > 0 ? (
+    books.map((book) => (
+      <div className="col-md-4 mb-3" key={book.id}>
+        <BookCard
+          title={book.title}
+          author={book.author}
+          rating={book.rating}
+          image={book.image}
+          onClick={() => {
+            setSelectedBook(book);
+            setShowModal(true);
+          }}
+        />
+      </div>
+    ))
+  ) : <p></p>}
+</div>
+>>>>>>> refs/remotes/origin/Andrew
       {selectedBook && (
         <BookModal
           show={showModal}

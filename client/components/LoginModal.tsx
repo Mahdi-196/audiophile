@@ -132,4 +132,8 @@ const Login: React.FC<LoginProps> = ({ onClose }: LoginProps) => {
   );
 };
 
+<<<<<<< HEAD
 export default Login;
+=======
+export default Login;
+>>>>>>> refs/remotes/origin/Andrew

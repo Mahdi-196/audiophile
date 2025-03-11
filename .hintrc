@@ -11,7 +11,8 @@
     "axe/forms": [
       "default",
       {
-        "label": "off"
+        "label": "off",
+        "select-name": "off"
       }
     ],
     "axe/name-role-value": [
@@ -27,6 +28,12 @@
           "scrollbar-width",
           "scrollbar-width: none"
         ]
+      }
+    ],
+    "axe/text-alternatives": [
+      "default",
+      {
+        "frame-title": "off"
       }
     ]
   }
