@@ -1,28 +1,43 @@
 import "../styles/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import handleLogin from "../utils/Login";
-import { handleRegister } from "../utils/RegisterUser";
+import handleLogin from "../../client/utils/Login";
+import registerUser from "../../client/utils/RegisterUser";
 
 interface LoginProps {
   onClose: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ onClose }) => {
+const Login: React.FC<LoginProps> = ({ onClose }: LoginProps) => {
   const [isRegister, setIsRegister] = useState(false);
-  const [subscribe, setSubscribe] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const originalFormdata = {
+    username: '',
+    email: '',
+    password: '',
+    subscribe: false
+  }
+  const [formData, setFormData] = useState(originalFormdata)
 
   const handleSubmit = async (event: React.FormEvent) => {
-    if (isRegister) {
-      const form = event.target as HTMLFormElement;
-      const username = (form.elements.namedItem('username') as HTMLInputElement).value;
-      const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-      const password = (form.elements.namedItem('password') as HTMLInputElement).value;
-      await handleRegister({ username, email, password });
-    } else {
-      await handleLogin(event, subscribe, onClose);
+    event.preventDefault();
+    try {
+      if (isRegister) {
+        await registerUser({ username: formData.username, email: formData.email, password: formData.password });
+      } else {
+        await handleLogin({ email: formData.email, password: formData.password, subscribe: formData.subscribe });
+      }
+      onClose(); // Call onClose after successful login or registration
+    } catch {
+      setError("An error occurred during login. Please try again.");
     }
   };
+
+  const handleFormChange = (name: string, value: string | boolean) => {
+    setFormData({ ...formData, [name]: value });
+    console.log(formData);
+  }
 
   return (
     <div
@@ -36,6 +51,7 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
             <h5 className="modal-title">{isRegister ? "Register" : "Login"}</h5>
           </div>
           <div className="modal-body">
+            {error && <div className="alert alert-danger">{error}</div>}
             <form onSubmit={handleSubmit}>
               {isRegister && (
                 <div className="mb-3">
@@ -45,8 +61,11 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
                   <input
                     type="text"
                     id="username"
+                    value={formData.username}
+                    name="username"
                     className="form-control"
                     required
+                    onChange={(e) => handleFormChange(e.target.name, e.target.value)}
                   />
                 </div>
               )}
@@ -57,8 +76,11 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
                 <input
                   type="email"
                   id="email"
+                  value={formData.email}
+                  name="email"
                   className="form-control"
                   required
+                  onChange={(e) => handleFormChange(e.target.name, e.target.value)}
                 />
               </div>
               <div className="mb-3">
@@ -68,8 +90,11 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
                 <input
                   type="password"
                   id="password"
+                  value={formData.password}
+                  name="password"
                   className="form-control"
                   required
+                  onChange={(e) => handleFormChange(e.target.name, e.target.value)}
                 />
               </div>
               {!isRegister && (
@@ -78,8 +103,9 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
                     type="checkbox"
                     className="form-check-input"
                     id="subscribe"
-                    checked={subscribe}
-                    onChange={() => setSubscribe(!subscribe)}
+                    checked={formData.subscribe}
+                    name="subscribe"
+                    onChange={(e) => handleFormChange(e.target.name, e.target.checked)}
                   />
                   <label className="form-check-label" htmlFor="subscribe">
                     Subscribe to newsletter

@@ -6,7 +6,7 @@ const pool = new Pool({
   port: 5432,
   database: 'audiophile',
   user: 'postgres',
-  password: 'P0stgr3$',
+  password: 'password',
 });
 
 const initializeDatabase = async () => {

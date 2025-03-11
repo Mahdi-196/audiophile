@@ -11,8 +11,8 @@ import { Pool } from 'pg';
 const config = {
     user: 'postgres',
     host: 'localhost',
-    database: 'audiophile',
-    password: 'P0stgr3$',
+    database: 'audiobook_db',
+    password: 'password',
     port: 5432, // default PostgreSQL port
 };
 const client = new Pool(config);
