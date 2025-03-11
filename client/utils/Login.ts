@@ -8,12 +8,12 @@ interface LoginData {
 
 const handleLogin = async ({ email, password, subscribe }: LoginData) => {
   try {
-    const response = await axios.post('http://localhost:3001/api/login', { email, password });
+    const response = await axios.post('http://localhost:5432/api/login', { email, password });
     console.log('Login response:', response.data);
 
     if (response.data.message === 'Login successful') {
       if (subscribe) {
-        const subscribeResponse = await axios.post('http://localhost:3001/api/subscribe', { email });
+        const subscribeResponse = await axios.post('http://localhost:5432/api/subscribe', { email });
         console.log('Subscribe response:', subscribeResponse.data);
       }
     } else {

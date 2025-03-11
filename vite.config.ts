@@ -1,15 +1,25 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  root: ".", // Ensures Vite looks in the correct directory
-  server: {
-    port: 5173,
-    open: true,
+  resolve: {
+    alias: {
+      '@assets': path.resolve(__dirname, './assets')
+    }
   },
   build: {
-    outDir: "dist",
-    emptyOutDir: true,
-  },
+    rollupOptions: {
+      output: {
+        assetFileNames: assetInfo => {
+          if (assetInfo.name && /\.(woff|woff2|eot|ttf|otf)$/i.test(assetInfo.name)) {
+            return 'assets/fonts/[name][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        }
+      }
+    }
+  }
 });

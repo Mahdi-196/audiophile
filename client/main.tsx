@@ -1,5 +1,3 @@
-// Andrew branch of git@github.com:Mahdi-196/audiophile.git
-
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";

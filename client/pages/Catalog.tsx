@@ -21,7 +21,7 @@ const Catalog: React.FC = () => {
   const handleSearch = async () => {
     if (!query.trim()) return;
     try {
-      const response = await axios.get(`http://localhost:3001/api/books?query=${encodeURIComponent(query)}`);
+      const response = await axios.get(`http://localhost:5000/api/books?query=${encodeURIComponent(query)}`);
       console.log("API full response:", response.data);
       setBooks(Array.isArray(response.data) ? response.data : []);
     } catch (error) {

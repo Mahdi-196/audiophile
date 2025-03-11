@@ -1,36 +1,44 @@
 @font-face {
+  font-family: "Kimberley";
+  src: url("/assets/Kimberley Bl.otf") format("opentype");
+}
+
+@font-face {
   font-family: "Komtx";
-  src: url("../assets/KOMTXTKI.ttf") format("truetype");
+  src: url("/assets/KOMTXTKI.ttf") format("truetype");
 }
-@font-face {
-  font-family: "simple";
-  src: url("../assets/Simple Day.otf") format("opentype");
-}
-@font-face {
-  font-family: "Sublima";
-  src: url("../assets/Sublima-ExtraBoldItalic.otf") format("opentype");
-}
+
 @font-face {
   font-family: "Muro";
-  src: url("../assets/Muroslant.otf") format("opentype");
+  src: url("/assets/Muroslant.otf") format("opentype");
 }
+
 @font-face {
-  font-family: "Kimberly";
-  src: url("../assets/Kimberley Bl.otf") format("opentype");
+  font-family: "Simple Day";
+  src: url("/assets/Simple Day.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Sublima";
+  src: url("/assets/Sublima-ExtraBoldItalic.otf") format("opentype");
+}
+
+.body-font {
+  font-family: "Simple Day", sans-serif;
 }
 
 .header-font {
   font-family: "Komtx", sans-serif;
 }
-.body-font {
-  font-family: "simple", sans-serif;
-}
+
 .category-font {
   font-family: "Muro", sans-serif;
 }
+
 .ai-font {
-  font-family: "Kimberly", sans-serif;
+  font-family: "Kimberley", sans-serif;
 }
+
 .menu-font {
   font-family: "Sublima", sans-serif;
 }
