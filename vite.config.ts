@@ -27,6 +27,6 @@ export default defineConfig({
     }
   },
   preview: {
-    allowedHosts: ['audiophile-006.onrender.com', '.onrender.com']
+    allowedHosts: ['*']
   }
 });
