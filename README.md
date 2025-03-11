@@ -1,85 +1,38 @@
-AUDIOPHILE
-│── assets
-│   ├── Kimberley Bl.otf
-│   ├── KOMTXTKI.ttf
-│   ├── logo.png
-│   ├── Muroslant.otf
-│   ├── Simple Day.otf
-│   ├── Sublima-ExtraBoldItalic.otf
-│
-├── client
-│   ├── components
-│   │   ├── BookCard.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Header.tsx
-│   │   ├── LoginModal.tsx
-│   │   ├── Modal.tsx
-│   │
-│   ├── config
-│   │   ├── config.js
-│   │
-│   ├── data
-│   │   ├── books.d.ts
-│   │   ├── books.ts
-│   │
-│   ├── pages
-│   │   ├── Ai.tsx
-│   │   ├── Catalog.tsx
-│   │   ├── Home.tsx
-│   │   ├── Settings.tsx
-│   │
-│   ├── styles
-│   │   ├── index.css
-│   │
-│   ├── utils
-│   │   ├── connectDB.tsx
-│   │   ├── db.tsx
-│   │   ├── Login.ts
-│   │   ├── RegisterUser.ts
-│   │   ├── sequelize.ts
-│   │
-│   ├── .env
-│   ├── App.tsx
-│   ├── global.d.ts
-│   ├── index.html
-│   ├── main.tsx
-│   ├── package.json
-│   ├── tsconfig.json
-│   ├── utils.tsx
-│   ├── yarn.lock
-│   ├── node_modules/
-│
-├── server
-│   ├── node_modules/
-│   ├── src
-│   │   ├── config
-│   │   │   ├── database.js
-│   │   ├── controllers
-│   │   │   ├── bookControllers.js
-│   │   ├── models
-│   │   │   ├── Book.js
-│   │   │   ├── index.js
-│   │   │   ├── user.js
-│   │   ├── routes
-│   │   │   ├── bookRoutes.js
-│   │   │   ├── index.js
-│   │   │   ├── loginRoutes.js
-│   │   │   ├── registerUser.js
-│   │   ├── services
-│   │   │   ├── spotifyService.js
-│   │   ├── server.js
-│   │
-│   ├── .env
-│   ├── .gitignore
-│   ├── .hintrc
-│   ├── .yarnclean
-│   ├── .yarnrc.yml
-│   ├── eslint.config.js
-│   ├── package.json
-│   ├── README.md
-│   ├── tsconfig.app.json
-│   ├── tsconfig.json
-│   ├── tsconfig.node.json
-│   ├── vite-env.d.ts
-│   ├── vite.config.ts
-│   ├── yarn.lock
+# Audiophile
+  ![License](https://img.shields.io/badge/License-MIT.svg)
+
+  ## Description
+  
+  Audiophile provides a large curated library of high quality audiobooks across various genres. Includes seamless search functionality, personalized recommendations and AI powered assistance.
+  
+  ## Table of Contents
+  
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
+  
+  ## Installation
+  Clone the repository: git clone https://github.com/Mahdi-196/audiophile, navnavigate into your folder. yarn install, yarn run dev.
+  
+  ## Usage
+  Find any audiobook you want to listen searching by name or look through categories to find onethat intinterests you. Also you AI as assistance to get recommendations if you arent sure what you want.
+  
+  ## License
+
+This project is licensed under the [MIT]((https://img.shields.io/badge/License-MIT.svg)) license.
+  
+  ## Contributing
+  Anyone may feel free to contribute.
+  
+  ## Tests
+  No automated tests. can you manually test the application by running it locally.
+  
+  ## Questions
+  
+  If you have any questions about the project, please feel free to contact me:
+  
+  - GitHub: [Mahdi](https://github.com/Mahdi)
+  - Email: mahdighaleb196@gmail.com
