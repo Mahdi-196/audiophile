@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import sequelize from './config/database.js';
+import sequelize from "./config/database.js";
 import bookRoutes from './routes/bookRoutes.js';
 
 

@@ -6,8 +6,8 @@
   "packageManager": "yarn@1.22.19",
   "scripts": {
     "dev": "concurrently \"yarn --cwd server dev\" \"yarn --cwd client dev\"",
-    "build": "yarn --cwd client build",
-    "start": "yarn --cwd client start",
+    "build": "yarn --cwd client build && yarn --cwd server build",
+    "start": "concurrently \"yarn --cwd server start\" \"yarn --cwd client start\"",
     "lint": "yarn eslint .",
     "format": "yarn prettier --write ."
   },

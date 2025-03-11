@@ -55,27 +55,24 @@ const Catalog: React.FC = () => {
         />
       </div>
 
-      <div className="row">
-        {Array.isArray(books) && books.length > 0 ? (
-          books.map((book) => (
-            <div className="col-md-4 mb-3" key={book.id}>
-              <BookCard
-                title={book.title}
-                author={book.author}
-                rating={book.rating}
-                image={book.image}
-                onClick={() => {
-                  setSelectedBook(book);
-                  setShowModal(true);
-                }}
-              />
-            </div>
-          ))
-        ) : (
-          <p></p>
-        )}
+<div className="row">
+  {Array.isArray(books) && books.length > 0 ? (
+    books.map((book) => (
+      <div className="col-md-4 mb-3" key={book.id}>
+        <BookCard
+          title={book.title}
+          author={book.author}
+          rating={book.rating}
+          image={book.image}
+          onClick={() => {
+            setSelectedBook(book);
+            setShowModal(true);
+          }}
+        />
       </div>
-
+    ))
+  ) : <p></p>}
+</div>
       {selectedBook && (
         <BookModal
           show={showModal}
