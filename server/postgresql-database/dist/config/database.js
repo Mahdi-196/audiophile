@@ -20,7 +20,7 @@ const initializeDatabase = () => __awaiter(void 0, void 0, void 0, function* () 
     const client = yield pool.connect();
     try {
         yield client.query(`
-      CREATE TABLE IF NOT EXISTS your_table_name (
+      CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         column1 VARCHAR(255) NOT NULL,
         column2 INT NOT NULL
