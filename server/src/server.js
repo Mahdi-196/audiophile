@@ -3,11 +3,12 @@ import dotenv from "dotenv";
 import cors from "cors";
 import sequelize from "./config/database.js";
 import bookRoutes from './routes/bookRoutes.js';
+import 'dotenv/config';
 
 
 dotenv.config();
 const app = express();
-const PORT = Number(process.env.PORT) || 3001;
+const PORT = Number(process.env.PORT) || 5432;
 // Middleware
 app.use(cors());
 app.use(express.json()); // Parse JSON bodies
