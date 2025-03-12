@@ -29,6 +29,6 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: process.env.PORT ? Number(process.env.PORT) : 3000,
-    allowedHosts: ['https://audiophile-009.onrender.com', 'audiophile-009.onrender.com']
+    allowedHosts: ['https://audiophile-010.onrender.com', 'audiophile-010.onrender.com']
   }
 });
