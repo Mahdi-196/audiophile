@@ -8,7 +8,7 @@ const pool = new Pool({
   host: 'localhost',
   database: 'audiobook_db',
   password: 'password',
-  port: 5432,
+  port: 5432, // Updated port for PostgreSQL
 });
 
 pool.on('connect', () => {
@@ -17,7 +17,7 @@ pool.on('connect', () => {
 
 export { pool };
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000; // Updated server port to 3000
 
 app.use(express.json());
 

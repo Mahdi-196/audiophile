@@ -9,12 +9,12 @@ interface LoginData {
 
 const handleLogin = async ({ email, password, subscribe, sshPublicKey }: LoginData) => {
   try {
-    const response = await axios.post('http://localhost:5432/api/login', { email, password, sshPublicKey });
+    const response = await axios.post('http://localhost:5000/api/login', { email, password, sshPublicKey });
     console.log('Login response:', response.data);
 
     if (response.data.message === 'Login successful') {
       if (subscribe) {
-        const subscribeResponse = await axios.post('http://localhost:5432/api/subscribe', { email });
+        const subscribeResponse = await axios.post('http://localhost:5000/api/subscribe', { email });
         console.log('Subscribe response:', subscribeResponse.data);
       }
     } else {

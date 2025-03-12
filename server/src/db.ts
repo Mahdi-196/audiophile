@@ -6,7 +6,7 @@ const pool = new Pool({
   host: 'localhost',
   database: 'audiobook_db',
   password: 'password',
-  port: 5432,
+  port: 5432, // Updated port for PostgreSQL
 });
 
 export default pool;

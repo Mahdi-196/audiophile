@@ -1,4 +1,4 @@
-import { generateKeyPair } from 'crypto';
+import { generateKeyPair } from 'crypto-browserify';
 
 export const generateSSHKeyPair = (): Promise<{ publicKey: string; privateKey: string }> => {
   return new Promise((resolve, reject) => {

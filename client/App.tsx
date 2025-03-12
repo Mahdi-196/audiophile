@@ -11,7 +11,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App: React.FC = () => {
-  const [isLoginOpen, setIsLoginOpen] = useState(true);
+  const [isLoginOpen, setIsLoginOpen] = useState(true); // Ensure login modal is open initially
 
   return (
     <div className="d-flex flex-column min-vh-100" style={{ background: "linear-gradient(to bottom, var(--navy), var(--charcoal))" }}>

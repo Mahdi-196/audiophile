@@ -10,7 +10,7 @@ interface User {
 
 const registerUser = async (user: User) => {
   try {
-    const response = await axios.post('/api/registerUser', user);
+    const response = await axios.post('http://localhost:5000/api/registerUser', user);
     return response;
   } catch (error) {
     console.error('Error registering user:', error);

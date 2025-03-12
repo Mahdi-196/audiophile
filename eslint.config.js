@@ -26,3 +26,17 @@ export default tseslint.config(
     },
   },
 );
+
+module.exports = {
+  server: {
+    port: 3000,
+    host: 'localhost'
+  },
+  database: {
+    host: 'localhost',
+    port: 5432,
+    user: 'your_db_user',
+    password: 'your_db_password',
+    database: 'your_db_name'
+  }
+};

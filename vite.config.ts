@@ -1,12 +1,22 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 import path from 'path';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    NodeGlobalsPolyfillPlugin({
+      process: true,
+      buffer: true,
+    }),
+    NodeModulesPolyfillPlugin(),
+  ],
   resolve: {
     alias: {
-      '@assets': path.resolve(__dirname, './assets')
+      '@assets': path.resolve(__dirname, './assets'),
+      crypto: 'crypto-browserify',
     }
   },
   server: {
@@ -22,9 +32,15 @@ export default defineConfig({
             return 'assets/fonts/[name][extname]';
           }
           return 'assets/[name]-[hash][extname]';
+        },
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
         }
       }
-    }
+    },
+    chunkSizeWarningLimit: 1000, // Adjust the limit as needed (in kB)
   },
   preview: {
     host: '0.0.0.0',
