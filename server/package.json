@@ -4,8 +4,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/server.js --port 3000",
-    "start": "node src/server.js --port 3000",
+    "dev": "pg_ctl start -D /usr/local/var/postgres -l logfile -p 5432 && nodemon src/server.js --port 3001",
+    "start": "pg_ctl start -D /usr/local/var/postgres -l logfile -p 5432 && node src/server.js --port 3001",
+    "stop": "pg_ctl stop -D /usr/local/var/postgres",
     "build": "echo 'No build needed for server'"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "@types/express": "^4.17.11",
     "@types/bcrypt": "^5.0.0",
     "@types/pg": "^7.14.7",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "concurrently": "^9.1.2"
   }
 }

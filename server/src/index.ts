@@ -1,6 +1,11 @@
 import express, { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { Pool } from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+console.log(process.env.DATABASE_URL);
 
 const app = express();
 const pool = new Pool({
@@ -17,7 +22,7 @@ pool.on('connect', () => {
 
 export { pool };
 
-const PORT = process.env.PORT || 3000; // Updated server port to 3000
+const PORT = process.env.PORT || 30001; // Updated server port to 30001
 
 app.use(express.json());
 
