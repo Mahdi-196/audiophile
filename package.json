@@ -4,6 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "packageManager": "yarn@1.22.19",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
     "dev": "concurrently \"yarn --cwd server dev\" \"yarn --cwd client dev\"",
     "build": "yarn --cwd client build && yarn --cwd server build",

@@ -9,7 +9,7 @@ const AiPage: React.FC = () => {
 
   const API_URL = "https://api.deepseek.com/chat/completions";
   const MODEL = "deepseek-chat";
-  const DEEPSEEK_API_KEY = process.env.VITE_DEEPSEEK_API_KEY;
+  const DEEPSEEK_API_KEY ="sk-8be96cc5cd4c41c19aaecc522601c55d";
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
