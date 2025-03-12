@@ -11,7 +11,7 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    port: 4173,
+    port: process.env.PORT ? Number(process.env.PORT) : 3000,
     open: true,
   },
   build: {
@@ -27,6 +27,8 @@ export default defineConfig({
     }
   },
   preview: {
-    allowedHosts: ['*']
+    host: '0.0.0.0',
+    port: process.env.PORT ? Number(process.env.PORT) : 3000,
+    allowedHosts: ['https://audiophile-009.onrender.com', 'audiophile-009.onrender.com']
   }
 });
