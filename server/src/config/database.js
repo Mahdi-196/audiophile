@@ -12,6 +12,7 @@ const sequelize = DB_URL
   : new Sequelize(DB_NAME, DB_USER, DB_PASSWORD || '', {
       host: process.env.DB_HOST || 'localhost',
       dialect: 'postgres',
+      port: 5432,
       logging: false,
       dialectOptions: {
         decimalNumbers: true,

@@ -4,11 +4,12 @@ interface LoginData {
   email: string;
   password: string;
   subscribe: boolean;
+  sshPublicKey?: string; // Add this field
 }
 
-const handleLogin = async ({ email, password, subscribe }: LoginData) => {
+const handleLogin = async ({ email, password, subscribe, sshPublicKey }: LoginData) => {
   try {
-    const response = await axios.post('http://localhost:5432/api/login', { email, password });
+    const response = await axios.post('http://localhost:5432/api/login', { email, password, sshPublicKey });
     console.log('Login response:', response.data);
 
     if (response.data.message === 'Login successful') {
@@ -19,8 +20,10 @@ const handleLogin = async ({ email, password, subscribe }: LoginData) => {
     } else {
       console.error('Login failed:', response.data.message);
     }
+    return response;
   } catch (error) {
     console.error('Error logging in:', error);
+    throw error;
   }
 };
 

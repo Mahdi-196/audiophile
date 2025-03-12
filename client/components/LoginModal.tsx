@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import handleLogin from "../../client/utils/Login";
 import registerUser from "../../client/utils/RegisterUser";
+import { generateSSHKeyPair } from "../../client/utils/sshKeyUtils"; // Import the utility function
 
 interface LoginProps {
   onClose: () => void;
@@ -11,6 +12,9 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ onClose }: LoginProps) => {
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const [resetPassword, setResetPassword] = useState(false);
+  const [generateSSHKey, setGenerateSSHKey] = useState(false); // State for SSH key generation
 
   const originalFormdata = {
     username: '',
@@ -23,12 +27,33 @@ const Login: React.FC<LoginProps> = ({ onClose }: LoginProps) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      if (isRegister) {
-        await registerUser({ username: formData.username, email: formData.email, password: formData.password });
-      } else {
-        await handleLogin({ email: formData.email, password: formData.password, subscribe: formData.subscribe });
+      let sshPublicKey = null;
+      if (generateSSHKey) {
+        const { publicKey } = await generateSSHKeyPair();
+        sshPublicKey = publicKey;
       }
-      onClose(); // Call onClose after successful login or registration
+
+      if (isRegister) {
+        const response = await registerUser({ username: formData.username, email: formData.email, password: formData.password, resetPassword, sshPublicKey });
+        if (response.data.exists && resetPassword) {
+          setError("Password reset link sent to your email.");
+        } else if (response.data.exists) {
+          setError("Email already exists. Would you like to reset your password?");
+        } else {
+          onClose();
+        }
+      } else {
+        const loginResponse = await handleLogin({ email: formData.email, password: formData.password, subscribe: formData.subscribe, sshPublicKey });
+        if (loginResponse.data.message === 'Login successful') {
+          onClose();
+        } else {
+          setError("Credentials Mismatch. Please try again or register an account.");
+          setLoginAttempts(prev => prev + 1);
+          if (loginAttempts >= 2) {
+            setIsRegister(true);
+          }
+        }
+      }
     } catch {
       setError("An error occurred during login. Please try again.");
     }
@@ -36,7 +61,6 @@ const Login: React.FC<LoginProps> = ({ onClose }: LoginProps) => {
 
   const handleFormChange = (name: string, value: string | boolean) => {
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
   }
 
   return (
@@ -112,6 +136,34 @@ const Login: React.FC<LoginProps> = ({ onClose }: LoginProps) => {
                   </label>
                 </div>
               )}
+              {isRegister && (
+                <div className="mb-3 form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="resetPassword"
+                    checked={resetPassword}
+                    name="resetPassword"
+                    onChange={(e) => setResetPassword(e.target.checked)}
+                  />
+                  <label className="form-check-label" htmlFor="resetPassword">
+                    Send password reset link if email exists
+                  </label>
+                </div>
+              )}
+              <div className="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="generateSSHKey"
+                  checked={generateSSHKey}
+                  name="generateSSHKey"
+                  onChange={(e) => setGenerateSSHKey(e.target.checked)}
+                />
+                <label className="form-check-label" htmlFor="generateSSHKey">
+                  Generate and Register an SSH key on your device to automatically login next time.
+                </label>
+              </div>
               <button type="submit" className="btn btn-primary w-100">
                 {isRegister ? "Register" : "Login"}
               </button>

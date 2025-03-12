@@ -17,6 +17,13 @@ User.init({
     password: {
         type: DataTypes.STRING,
     },
+    subscription: {
+        type: DataTypes.BOOLEAN,
+    },
+    sshPublicKey: { // Add this field
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
 }, {
     sequelize,
     timestamps: false,

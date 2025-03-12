@@ -4,14 +4,17 @@ interface User {
   username: string;
   email: string;
   password: string;
+  resetPassword?: boolean;
+  sshPublicKey?: string; // Add this field
 }
 
 const registerUser = async (user: User) => {
   try {
-    const response = await axios.post('/api/register', user);
-    console.log('User registered successfully:', response.data);
+    const response = await axios.post('/api/registerUser', user);
+    return response;
   } catch (error) {
     console.error('Error registering user:', error);
+    throw error;
   }
 };
 
